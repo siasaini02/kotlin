@@ -1,11 +1,4 @@
-package amity.edu.bmi
 
-import amity.edu.bmi.databinding.ActivityMainBinding
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.widget.EditText
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
