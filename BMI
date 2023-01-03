@@ -32,7 +32,17 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun calculateBMI()
+    private fun calculateBMI()        {
+            val height = binding.heightpicker.value
+            val doubleHeight = height.toDouble()/100
+
+            val weight = binding.weightpicker.value
+
+            val bmi = weight.toDouble()/(doubleHeight * doubleHeight)
+
+            binding.result.text = String.format("Your BMI is %.2f", bmi)
+        }
+    }
     
     
     <?xml version="1.0" encoding="utf-8"?>
@@ -109,18 +119,8 @@ class MainActivity : AppCompatActivity() {
 </androidx.appcompat.widget.LinearLayoutCompat>
 
 
+
 gradle:app
 buildFeatures{
      viewBinding true
 }
-        {
-            val height = binding.heightpicker.value
-            val doubleHeight = height.toDouble()/100
-
-            val weight = binding.weightpicker.value
-
-            val bmi = weight.toDouble()/(doubleHeight * doubleHeight)
-
-            binding.result.text = String.format("Your BMI is %.2f", bmi)
-        }
-    }
