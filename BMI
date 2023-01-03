@@ -1,0 +1,126 @@
+package amity.edu.bmi
+
+import amity.edu.bmi.databinding.ActivityMainBinding
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.widget.EditText
+import kotlinx.android.synthetic.main.activity_main.*
+
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.weightpicker.maxValue = 150
+        binding.weightpicker.minValue = 30
+
+        binding.heightpicker.maxValue = 250
+        binding.heightpicker.minValue = 100
+
+        binding.weightpicker.setOnValueChangedListener{ ,,_ ->
+            calculateBMI()
+        }
+
+        binding.heightpicker.setOnValueChangedListener{ ,,_ ->
+            calculateBMI()
+        }
+
+    }
+
+    private fun calculateBMI()
+    
+    
+    <?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    android:background="@color/teal_700"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:text="Body Mass Index Calculator"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        android:fontFamily="times"
+        android:textColor="@color/black"
+
+        />
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:gravity="center">
+
+     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Height (cm)"
+        android:textSize="20dp"
+         android:textStyle="bold"
+         />
+
+        <NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/heightpicker"
+        android:layout_marginHorizontal="5dp"
+            android:layout_margin="12dp"
+            />
+
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Weight (cm)"
+        android:textSize="20dp"
+            android:textStyle="bold"
+            />
+
+     <NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/weightpicker"
+        android:layout_marginHorizontal="5dp"
+        android:textAlignment="center"
+         android:layout_margin="12dp"
+        />
+        </LinearLayout>
+
+        <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/result"
+        android:padding="20dp"/>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
+
+
+gradle:app
+buildFeatures{
+     viewBinding true
+}
+        {
+            val height = binding.heightpicker.value
+            val doubleHeight = height.toDouble()/100
+
+            val weight = binding.weightpicker.value
+
+            val bmi = weight.toDouble()/(doubleHeight * doubleHeight)
+
+            binding.result.text = String.format("Your BMI is %.2f", bmi)
+        }
+    }
